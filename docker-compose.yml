@@ -5,8 +5,9 @@ services:
     build:
       context: ./services/web
       dockerfile: Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
     expose:
-      - 5000
+      - 8000
     environment:
       - DB_USER=postgres
       - DB_PASSWORD=postgres
