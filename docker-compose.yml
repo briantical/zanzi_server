@@ -14,15 +14,17 @@ services:
       - SECRET_CODE=myprecious
     depends_on:
       - db
+      - redis
     networks:
       - app
 
   db:
+    restart: always
     build:
       context: ./services/db
       dockerfile: Dockerfile
     volumes:
-      - data-volume:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     expose:
       - 5432
     environment:
@@ -30,6 +32,14 @@ services:
       - POSTGRES_PASSWORD=postgres
     networks:
       - app
+
+  redis:
+    restart: always
+    image: redis:latest
+    expose:
+      - 6379
+    volumes:
+      - redisdata:/data
 
   nginx:
     build:
@@ -48,5 +58,6 @@ networks:
     driver: bridge
 
 volumes:
-  data-volume:
+  pgdata:
     driver: local
+  redisdata:

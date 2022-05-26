@@ -1,2 +1,14 @@
-**.sqlite3
-.git
+**./sqlite3
+**/.git
+**/.gitignore
+**/.vscode
+**/coverage
+**/.env
+**/.DS_Store
+**/venv
+**/env
+Dockerfile
+README.md
+deploy.sh
+docker-compose.yml
+docker-compose-swarm.yml
